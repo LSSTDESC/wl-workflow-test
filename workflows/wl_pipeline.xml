@@ -17,13 +17,13 @@
             <var name="NERSC_DM_DIR">/global/cscratch1/sd/tony_j/Twinkles/trial</var>
             <var name="DM_DIR">${SITE=="NERSC" ? NERSC_DM_DIR : SLAC_DM_DIR}</var>
             <var name="DM_SETUP">setup.bash</var>
-            <!-- Base directory where output files will be placed -->
+            <!-- Base directory where output files wxbill be placed -->
             <var name="SLAC_OUTPUT_DATA_DIR">/nfs/farm/g/lsst/u/jchiang/WL_pipeline/output</var>
             <var name="NERSC_OUTPUT_DATA_DIR">/global/cscratch1/sd/jchiang8/WL_pipeline/output</var>
             <var name="OUTPUT_DATA_DIR">${SITE=="NERSC" ? NERSC_OUTPUT_DATA_DIR : SLAC_OUTPUT_DATA_DIR}</var>
             <!-- Base directory where scripts are located -->
             <var name="SLAC_SCRIPT_LOCATION">/nfs/farm/g/lsst/u/jchiang/WL_pipeline</var>
-            <var name="NERSC_SCRIPT_LOCATION">/global/cscratch1/sd/jchiang8/WL_pipeline</var>
+            <var name="NERSC_SCRIPT_LOCATION">/project/projectdirs/lsst/desc-wl/wl-workflow-test/workflows</var>
             <var name="SCRIPT_LOCATION">${SITE=="NERSC" ? NERSC_SCRIPT_LOCATION : SLAC_SCRIPT_LOCATION}</var>
             <var name="SCRIPT_NAME">WL_pipeline_Workflow.py</var>
             <var name="BATCH_NAME">WL_pipeline_Batch.sh</var>

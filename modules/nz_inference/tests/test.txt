@@ -1,3 +1,4 @@
 name WL-Test
-miniters 3
+miniters 2
+thinto 1
 plotonly 0

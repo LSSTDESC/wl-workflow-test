@@ -18,3 +18,14 @@ module load hdf5-hpcp
 module load h5py-hpcp
 module load ipython-hpcp
 module load pytables
+module load matplotlib-hpcp
+module load scikit-learn
+
+export WORKFLOW_USR_DIR=/project/projectdirs/lsst/desc-wl/wl-workflow-test/modules/usr
+
+export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${WORKFLOW_USR_DIR}/lib/libffi-3.2.1/include
+export LIBRARY_PATH=$LIBRARY_PATH:${WORKFLOW_USR_DIR}/lib64
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${WORKFLOW_USR_DIR}/lib64
+export PYTHONPATH=$PYTHONPATH:${WORKFLOW_USR_DIR}/lib/python2.7/site-packages
+export PATH=$PATH:${WORKFLOW_USR_DIR}/bin
+

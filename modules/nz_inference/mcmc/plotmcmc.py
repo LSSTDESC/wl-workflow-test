@@ -34,7 +34,7 @@ import statmcmc as sm
 # set up for better looking plots
 title = 10
 label = 10
-mpl.rcParams['text.usetex'] = True
+mpl.rcParams['text.usetex'] = False#True
 #mpl.rcParams['axes.titlesize'] = title
 mpl.rcParams['axes.labelsize'] = label
 mpl.rcParams['figure.subplot.left'] = 0.2
@@ -798,12 +798,12 @@ class plotter_2pcf(plotter):
         hist_mml = self.meta.mmlNz
         hist_bfe = np.exp(self.locs)
 
-        w_stk = self.calculate_weights(hist_tru[izmin:], hist_stk[izmin:], z[izmin:])
-        w_map = self.calculate_weights(hist_tru[izmin:], hist_map[izmin:], z[izmin:])
-        w_exp = self.calculate_weights(hist_tru[izmin:], hist_exp[izmin:], z[izmin:])
-        w_mml = self.calculate_weights(hist_tru[izmin:], hist_mml[izmin:], z[izmin:])
-        w_bfe = self.calculate_weights(hist_tru[izmin:], hist_bfe[izmin:], z[izmin:])
-        w_int = self.calculate_weights(hist_tru[izmin:], hist_int[izmin:], z[izmin:])
+        w_stk = self.calculate_weights(hist_stk[izmin:], hist_stk[izmin:], z[izmin:])
+        w_map = self.calculate_weights(hist_map[izmin:], hist_map[izmin:], z[izmin:])
+        w_exp = self.calculate_weights(hist_exp[izmin:], hist_exp[izmin:], z[izmin:])
+        w_mml = self.calculate_weights(hist_mml[izmin:], hist_mml[izmin:], z[izmin:])
+        w_bfe = self.calculate_weights(hist_bfe[izmin:], hist_bfe[izmin:], z[izmin:])
+        w_int = self.calculate_weights(hist_int[izmin:], hist_int[izmin:], z[izmin:])
         if self.meta.truNz != None:
             w_tru = self.calculate_weights(hist_tru[izmin:], hist_tru[izmin:], z[izmin:])
 

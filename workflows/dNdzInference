@@ -1,0 +1,12 @@
+echo "Running N(z) inference"
+
+startdir=.
+workdir=/project/projectdirs/lsst/desc-wl/wl-workflow-test/modules/nz_inference/mcmc/
+
+export PYTHONPATH=$PYTHONPATH:$workdir
+
+cd $workdir
+
+python fullmcmc.py
+
+cd $startdir

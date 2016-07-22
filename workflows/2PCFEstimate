@@ -1,0 +1,10 @@
+#!/usr/bin env bash
+
+source ../modules/nersc-setup
+
+#arguments
+infile=../data/DLS_F5_gold_sample_binned.h5
+outfile=../data/DLS_F5_gold_sample_results.dat
+configfile=../modules/twopoint-measurement/treecorr-config.yaml
+
+corr2  $configfile file_name=$infile gg_file_name=$outfile
