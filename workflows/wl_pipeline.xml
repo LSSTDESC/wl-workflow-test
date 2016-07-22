@@ -29,22 +29,22 @@
             <var name="BATCH_NAME">WL_pipeline_Batch.sh</var>
             <var name="JOBSITE">${SITE=="NERSC" ? "NERSCTONYJ" : "SLAC"}</var>
         </variables>
-        <process name="selection" site="${JOBSITE}">
+        <process name="catalogSelection" site="${JOBSITE}">
             <notation>Make selections on the DM Catalog Data</notation>
             <job maxCPU="${MAXCPU}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
         </process>
-        <process name="setupSelectionNullTests">
+        <process name="setupCatalogSelectionNullTests">
             <notation>Null tests for DM Catalog selection</notation>
             <script><![CDATA[
           execfile("%s/%s" % (SLAC_SCRIPT_LOCATION, SCRIPT_NAME))
-          setupSelectionNullTests()
+          setupCatalogSelectionNullTests()
       ]]>
             </script>
             <depends>
-                <after process="selection"/>
+                <after process="catalogSelection"/>
             </depends>
             <createsSubtasks>
-                <subtask>selectionNullTestsTask</subtask>
+                <subtask>catalogSelectionNullTestsTask</subtask>
             </createsSubtasks>
         </process>
 
@@ -56,10 +56,24 @@
       ]]>
             </script>
             <depends>
-                <after process="selectionNullTestsTask.selectionNullTest"/>
+                <after process="catalogSelectionNullTestsTask.catalogSelectionNullTest"/>
             </depends>
             <createsSubtasks>
                 <subtask>photoZCharacterizationTask</subtask>
+            </createsSubtasks>
+        </process>
+        <process name="setupPhotoZCharacterizationNullTests">
+            <notation>Null tests for photo-z characterization</notation>
+            <script><![CDATA[
+          execfile("%s/%s" % (SLAC_SCRIPT_LOCATION, SCRIPT_NAME))
+          setupPhotozCharacterizationNullTests()
+      ]]>
+            </script>
+            <depends>
+                <after process="photoZCharacterizationTask.photoZCharacterization"/>
+            </depends>
+            <createsSubtasks>
+                <subtask>photoZCharacterizationNullTestsTask</subtask>
             </createsSubtasks>
         </process>
 
@@ -67,7 +81,7 @@
             <notation>Tomographic binning of catalog selections</notation>
             <job maxCPU="${MAXCPULONG}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             <depends>
-                <after process="photoZCharacterizationTask.photoZCharacterization"/>
+                <after process="photoZCharacterizationNullTestsTask.photoZCharacterizationNullTest"/>
             </depends>
         </process>
         <process name="setupTomographicBinningNullTests">
@@ -89,8 +103,8 @@
             <notation>Inference of N(z)</notation>
             <job maxCPU="${MAXCPULONG}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             <depends>
-                <after process="photoZCharacterizationTask.photoZCharacterization"/>
-                <after process="tomographicBinning"/>
+                <after process="photoZCharacterizationNullTestsTask.photoZCharacterizationNullTest"/>
+                <after process="tomographicBinningNullTestsTask.tomographicBinningNullTest"/>
             </depends>
         </process>
         <process name="setupDNdZInferenceNullTests">
@@ -112,7 +126,7 @@
             <notation>2-point correlation function estimation</notation>
             <job maxCPU="${MAXCPULONG}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             <depends>
-                <after process="tomographicBinning"/>
+                <after process="tomographicBinningNullTestsTask.tomographicBinningNullTest"/>
             </depends>
         </process>
         <process name="setup2PCFEstimateNullTests">
@@ -162,9 +176,9 @@
             </depends>
         </process>
 
-        <task name="selectionNullTestsTask" type="LSST">
+        <task name="catalogSelectionNullTestsTask" type="LSST">
             <notation>Sub-task that runs selection null tests</notation>
-            <process name="selectionNullTest" site="${JOBSITE}">
+            <process name="catalogSelectionNullTest" site="${JOBSITE}">
                 <notation>Null test for selection process</notation>
                 <job maxCPU="${MAXCPU}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             </process>
@@ -176,6 +190,13 @@
                 <job maxCPU="${MAXCPULONG}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             </process>
         </task>
+        <task name="photoZCharacterizationNullTestsTask" type="LSST">
+            <notation>Sub-task that runs photo-z characterization null tests</notation>
+            <process name="photoZCharacterizationNullTest" site="${JOBSITE}">
+                <notation>Photo-z characterization null test</notation>
+                <job maxCPU="${MAXCPULONG}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
+            </process>
+        </task>
         <task name="tomographicBinningNullTestsTask" type="LSST">
             <notation>Sub-task that runs tomographic binning null tests</notation>
             <process name="tomographicBinningNullTest" site="${JOBSITE}">
@@ -184,9 +205,23 @@
             </process>
         </task>
         <task name="dNdZInferenceNullTestsTask" type="LSST">
-            <notation>Sub-task that runs dN/dZ infermace null tests</notation>
-            <process name="tomographicBinningNullTest" site="${JOBSITE}">
+            <notation>Sub-task that runs dN/dZ inference null tests</notation>
+            <process name="dNdZInferenceNullTest" site="${JOBSITE}">
                 <notation>Null test for tomographic binning</notation>
+                <job maxCPU="${MAXCPU}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
+            </process>
+        </task>
+        <task name="2PCFEstimateNullTestsTask" type="LSST">
+            <notation>Sub-task that runs 2-point correlation function null tests</notation>
+            <process name="2PCFEstimateNullTest" site="${JOBSITE}">
+                <notation>Null test for 2-point correlation function</notation>
+                <job maxCPU="${MAXCPU}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
+            </process>
+        </task>
+        <task name="covarianceModelNullTestsTask" type="LSST">
+            <notation>Sub-task that runs covariance matrix null tests</notation>
+            <process name="covarianceModelNullTest" site="${JOBSITE}">
+                <notation>Null test for covariance matrix calculation</notation>
                 <job maxCPU="${MAXCPU}" batchOptions="${BATCH_OPTIONS}" executable="${SCRIPT_LOCATION}/${BATCH_NAME}"/>
             </process>
         </task>
