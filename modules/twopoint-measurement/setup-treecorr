@@ -1,0 +1,6 @@
+export TREECORR_DIR=/project/projectdirs/lsst/desc-wl/wl-workflow-test/modules/twopoint-measurement
+export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${TREECORR_DIR}/lib/libffi-3.2.1/include
+export LIBRARY_PATH=$LIBRARY_PATH:${TREECORR_DIR}/lib64
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${TREECORR_DIR}/lib64
+export PYTHONPATH=$PYTHONPATH:${TREECORR_DIR}/lib/python2.7/site-packages
+export PATH=$PATH:${TREECORR_DIR}/bin
