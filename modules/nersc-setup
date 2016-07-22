@@ -1,0 +1,14 @@
+#Generic setup for NERSC to use the HPCPorts module system
+source /project/projectdirs/cmb/modules/hpcports_NERSC.sh
+hpcports gnu
+
+
+#Modules we will probably need
+
+module load python-hpcp 
+module load numpy-hpcp 
+module load scipy-hpcp 
+module load cfitsio-hpcp
+module load astropy-hpcp
+module load blas-hpcp
+module load gsl-hpcp
