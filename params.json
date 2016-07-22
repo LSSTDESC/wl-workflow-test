@@ -1,0 +1,6 @@
+{
+  "name": "Wl-workflow-test",
+  "tagline": "",
+  "body": "# WL Workflow concept\r\n\r\nFrom the DESC Hack Day 2016-07-22\r\n\r\nUse the SLAC Workflow Engine to execute the initial WL pipeline for cosmological parameter estimation from cosmic shear and angular galaxy clustering.\r\n\r\nThis pipeline takes as input image data or simulated image data, performs selections and null tests, computes summary statistics, and samples from the cosmological parameter posterior distribution.\r\n\r\n## Pipeline steps\r\n\r\n**Bolded entries** have initial implementations. All other steps are *no operation*.\r\n\r\n[Data or simulation steps go here]\r\n\r\n- DM catalog\r\n- Selection\r\n- Null tests on catalog\r\n- **Tomographic binning**\r\n- Photo-z characterization\r\n- **dN/dz inference**\r\n- **2PCF estimator**\r\n- Null tests on correlation functions\r\n- Covariance model\r\n- TJPCosmo\r\n\r\n\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
