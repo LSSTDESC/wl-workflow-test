@@ -17,3 +17,7 @@ From the DESC Hack Day 2016-07-22
 - Null tests on correlation functions
 - Covariance model
 - TJPCosmo
+
+## Test data
+
+### Substitute for the 'DM catalog': CatSim compilation by D. Kirkby http://weaklensingdeblending.readthedocs.io/en/latest/products.html
