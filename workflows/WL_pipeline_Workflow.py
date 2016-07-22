@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
 import photoZCharacterization
 import null_tests
 
@@ -10,7 +14,7 @@ def setupCatalogSelectionNullTests():
         pipeline.createSubstream("catalogSelectionNullTest", i,
                                  null_test.pipeline_vars)
 
-def setupPhotoZCharNullTests():
+def setupPhotozCharNullTests():
     for i, null_test in enumerate(null_tests.photoZCharNullTests):
         pipeline.createSubstream("photoZCharNullTest", i,
                                  null_test.pipeline_vars)
