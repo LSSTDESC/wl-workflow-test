@@ -1,17 +1,18 @@
+import photoZCharacterization
 import null_tests
+
+def setupPhotoZChar():
+    for i, job in enumerate(photoZCharacterization.jobs):
+        pipeline.createSubstream("photoZChar", i, job.pipeline_vars)
 
 def setupCatalogSelectionNullTests():
     for i, null_test in enumerate(null_tests.catalogSelectionNullTests):
         pipeline.createSubstream("catalogSelectionNullTest", i,
                                  null_test.pipeline_vars)
 
-def setupPhotoZChar():
-    for i, job in enumerate(null_tests.photoZCharacterizationJobs):
-        pipeline.createSubstream("photoZChar", i, job.pipeline_vars)
-
 def setupPhotoZCharNullTests():
-    for i, null_test in enumerate(null_tests.PhotoZCharNullTests):
-        pipeline.createSubstream("PhotoZCharNullTest", i,
+    for i, null_test in enumerate(null_tests.photoZCharNullTests):
+        pipeline.createSubstream("photoZCharNullTest", i,
                                  null_test.pipeline_vars)
 
 def setupTBinningNullTests():
@@ -25,11 +26,11 @@ def setupDNdZInferenceNullTests():
                                  null_test.pipeline_vars)
 
 def setup2PCFEstimateNullTests():
-    for i, null_test in enumerate(null_tests.2PCFEstimateNullTests):
+    for i, null_test in enumerate(null_tests.twoPCFEstimateNullTests):
         pipeline.createSubstream("2PCFEstimateNullTest", i,
                                  null_test.pipeline_vars)
 
 def setupCovarianceModelNullTests():
-    for i, null_test in enumerate(null_tests.CovarianceModelNullTests):
+    for i, null_test in enumerate(null_tests.covarianceModelNullTests):
         pipeline.createSubstream("covarianceModelNullTest", i,
                                  null_test.pipeline_vars)
