@@ -1,4 +1,6 @@
 #Generic setup for NERSC to use the HPCPorts module system
+#Source this script before running executables on NERSC
+
 source /project/projectdirs/cmb/modules/hpcports_NERSC.sh
 hpcports gnu
 
