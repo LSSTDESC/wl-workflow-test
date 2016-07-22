@@ -14,3 +14,7 @@ module load cfitsio-hpcp
 module load astropy-hpcp
 module load blas-hpcp
 module load gsl-hpcp
+module load hdf5-hpcp
+module load h5py-hpcp
+module load ipython-hpcp
+module load pytables
