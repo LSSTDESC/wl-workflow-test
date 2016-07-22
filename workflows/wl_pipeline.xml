@@ -133,7 +133,7 @@
             <notation>Null tests for 2-point correlation function estimation</notation>
             <script><![CDATA[
           execfile("%s/%s" % (SCRIPT_LOCATION, SCRIPT_NAME))
-          setup2pCFEstNullTests()
+          setup2PCFEstimateNullTests()
       ]]>
             </script>
             <depends>
